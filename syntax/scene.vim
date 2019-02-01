@@ -1,7 +1,7 @@
 " ============================================================================
 " File: scene.vim
 " Maintainer: https://github.com/EvanQuan/vim-scene/
-" Version: 0.1.0
+" Version: 0.2.0
 "
 " Syntax highlighting for scene files.
 " ============================================================================
@@ -10,12 +10,31 @@ if exists("b:current_syntax")
   finish
 endif
 
+setlocal iskeyword+=+
+setlocal iskeyword+=}
+setlocal iskeyword+={
 syntax keyword sceneTODO TODO FIXME XXX contained
+syntax match sceneNumber /[-]\?[0-9]\+/ contained
+syntax match sceneFloat /[-]\?[0-9]\+.[0-9]\+/ contained
 syntax match sceneNOTE /[A-Z]\+[a-zA-Z]*:/ contained
-syntax region sceneComment start=/^#/ end=/$/ contains=sceneTODO,sceneNOTE
+syntax region sceneComment start=/#/ end=/$/ contains=sceneTODO,sceneNOTE
+syntax keyword sceneObject light sphere plane player triangle contained
+syntax keyword scenePropertySymbol + contained
+syntax match sceneProperty /+\(mesh\|texture\|shader\)/ contained contains=scenePropertySymbol
+syntax keyword sceneDefinitionDelimiters {  } contained
+syntax region scenePropertyDefinition start=/\(+mesh\|+texture\|+shader\) {/ end=/}/ contained contains=sceneObject,sceneComment,sceneTODO,sceneNOTE,sceneProperty,scenePropertyPath,sceneDefinitionDelimiters keepend
+syntax region scenePropertyPath start=/[a-zA-z]\+/ end=/$/ contained keepend
+syntax region sceneObjectDefinition start=/^\(light\|sphere\|plane\|player\|triangle\) {/ end=/}/ contains=sceneObject,sceneComment,scenePropertyDefinition,sceneNumber,sceneFloat,sceneDefinitionDelimiters
 
 highlight link sceneComment Comment
 highlight link sceneTODO Todo
 highlight link sceneNOTE Typedef
+highlight link sceneObject Typedef
+highlight link sceneProperty Keyword
+highlight link scenePropertySymbol Operator
+highlight link scenePropertyPath String
+highlight link sceneNumber Number
+highlight link sceneFloat Float
+highlight link sceneDefinitionDelimiters Operator
 
 let b:current_syntax = "scene"
