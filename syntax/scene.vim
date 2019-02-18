@@ -1,7 +1,7 @@
 " ============================================================================
 " File: scene.vim
 " Maintainer: https://github.com/EvanQuan/vim-scene/
-" Version: 0.2.1
+" Version: 0.2.2
 "
 " Syntax highlighting for scene files.
 " ============================================================================
@@ -16,15 +16,15 @@ setlocal iskeyword+={
 syntax keyword sceneTODO TODO FIXME XXX contained
 syntax match sceneNumber /[-]\?[0-9]\+/ contained
 syntax match sceneFloat /[-]\?[0-9]\+.[0-9]\+/ contained
-syntax match sceneNOTE /[A-Z]\+[a-zA-Z]*:/ contained
+syntax match sceneNOTE /[A-Z]\+[a-zA-Z_]*:/ contained
 syntax region sceneComment start=/^#/ end=/$/ contains=sceneTODO,sceneNOTE
-syntax match sceneObject /[a-zA-Z]\+\ze {/ contained
+syntax match sceneObject /[a-zA-Z_]\+\ze {/ contained
 syntax keyword scenePropertySymbol + contained
-syntax match sceneProperty /+\(mesh\|texture\|shader\)/ contained contains=scenePropertySymbol
+syntax match sceneProperty /+[a-zA-Z_]\+/ contained contains=scenePropertySymbol
 syntax keyword sceneDefinitionDelimiters {  } contained
-syntax region scenePropertyDefinition start=/\(+mesh\|+texture\|+shader\) {/ end=/}/ contained contains=sceneObject,sceneComment,sceneTODO,sceneNOTE,sceneProperty,scenePropertyPath,sceneDefinitionDelimiters keepend
+syntax region scenePropertyDefinition start=/+[a-zA-Z_]\+\ze {/ end=/}/ contained contains=sceneObject,sceneComment,sceneTODO,sceneNOTE,sceneProperty,scenePropertyPath,sceneDefinitionDelimiters,sceneNumber,sceneFloat keepend
 syntax region scenePropertyPath start=/[a-zA-z]\+/ end=/$/ contained keepend
-syntax region sceneObjectDefinition start=/^\(light\|sphere\|plane\|player\|triangle\) {/ end=/}/ contains=sceneObject,sceneComment,scenePropertyDefinition,sceneNumber,sceneFloat,sceneDefinitionDelimiters
+syntax region sceneObjectDefinition start=/^[a-zA-Z_]\+\ze {/ end=/}/ contains=sceneObject,sceneComment,scenePropertyDefinition,sceneNumber,sceneFloat,sceneDefinitionDelimiters
 
 highlight link sceneComment Comment
 highlight link sceneTODO Todo
