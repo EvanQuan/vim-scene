@@ -1,7 +1,7 @@
 " ============================================================================
 " File: scene.vim
 " Maintainer: https://github.com/EvanQuan/vim-scene/
-" Version: 0.2.0
+" Version: 0.2.1
 "
 " Syntax highlighting for scene files.
 " ============================================================================
@@ -17,8 +17,8 @@ syntax keyword sceneTODO TODO FIXME XXX contained
 syntax match sceneNumber /[-]\?[0-9]\+/ contained
 syntax match sceneFloat /[-]\?[0-9]\+.[0-9]\+/ contained
 syntax match sceneNOTE /[A-Z]\+[a-zA-Z]*:/ contained
-syntax region sceneComment start=/#/ end=/$/ contains=sceneTODO,sceneNOTE
-syntax keyword sceneObject light sphere plane player triangle contained
+syntax region sceneComment start=/^#/ end=/$/ contains=sceneTODO,sceneNOTE
+syntax match sceneObject /[a-zA-Z]\+\ze {/ contained
 syntax keyword scenePropertySymbol + contained
 syntax match sceneProperty /+\(mesh\|texture\|shader\)/ contained contains=scenePropertySymbol
 syntax keyword sceneDefinitionDelimiters {  } contained
