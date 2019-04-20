@@ -2,6 +2,10 @@
 
 Scene filetype detection and syntax highlighting for Vim.
 
+![](https://raw.githubusercontent.com/wiki/EvanQuan/vim-scene/example1.png)
+![](https://raw.githubusercontent.com/wiki/EvanQuan/vim-scene/example2.png)
+![](https://raw.githubusercontent.com/wiki/EvanQuan/vim-scene/example3.png)
+
 ## Installation
 
 Install using your favorite package manager, or use Vim's built-in package
