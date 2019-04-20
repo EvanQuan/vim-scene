@@ -44,7 +44,7 @@ git clone https://github.com/EvanQuan/vim-scene.git ~/.vim/bundle/vim-scene
 
 ## Extra setup
 
-If you are a using [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+If you are using [nerdcommenter](https://github.com/scrooloose/nerdcommenter),
 add this to your `vimrc`:
 
 ```vim
