@@ -45,7 +45,7 @@ git clone https://github.com/EvanQuan/vim-scene.git ~/.vim/bundle/vim-scene
 ## Extra setup
 
 If you are a using [nerdcommenter](https://github.com/scrooloose/nerdcommenter)
-as this to your `vimrc`:
+add this to your `vimrc`:
 
 ```vim
 let g:NERDCustomDelimiters = {
